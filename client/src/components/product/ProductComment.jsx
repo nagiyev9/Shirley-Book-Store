@@ -16,8 +16,6 @@ const ProductComment = ({ data }) => {
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useState([]);
 
-  console.log(data);
-
   useEffect(() => {
     getCommentsByProductID(data?._id)
       .then((comments) => {
@@ -123,8 +121,13 @@ const ProductComment = ({ data }) => {
                   >
                     <div className="flex justify-between items-center mb-2">
                       <div>
-                        <p className="font-bold">
-                          {comment?.user?.firstName} {comment?.user?.lastName}
+                        <p className="font-bold flex gap-2 items-center">
+                          {comment?.user?.firstName} {comment?.user?.lastName}{" "}
+                          {comment?.user?._id === localStorage.getItem("id") ? <p className="text-[9px]">(Your Comment)</p> : null}
+                          {comment?.user?.role ===
+                          "66cf7b4a6d1af1a2de4a53c0" ? (
+                            <p className="text-green-500 text-xs bg-gray-300 px-2">Admin</p>
+                          ) : null}
                         </p>
                         <p className="text-gray-600 text-sm">
                           {comment?.createdAt.slice(0, 10)}

@@ -4,7 +4,7 @@ const Comment = require("../models/comment");
 // Get All Comments 
 exports.getAllComments = async () => {
     const comments = await Comment.find()
-        .populate('user', 'firstName lastName email _id')
+        .populate('user', 'firstName lastName email role _id')
         .populate('productID', 'name _id');
     return comments;
 };
@@ -12,7 +12,7 @@ exports.getAllComments = async () => {
 // Get Comment By Id 
 exports.getCommentByID = async id => {
     const comment = await Comment.findOne({ _id: id })
-        .populate('user', 'fisrtName lastName email _id')
+        .populate('user', 'fisrtName lastName email role _id')
         .populate('productID', 'name _id');
     return comment;
 };
@@ -20,7 +20,7 @@ exports.getCommentByID = async id => {
 // Get Comment By Product Id
 exports.getCommentsByProductID = async id => {
     const comments = await Comment.find({ productID: id })
-        .populate('user', 'firstName lastName email _id')
+        .populate('user', 'firstName lastName email role _id')
         .populate('productID', 'name _id');
     return comments;
 };
