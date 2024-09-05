@@ -16,4 +16,7 @@ router.post('/register', validate_register, handle_validation_errors, authContro
 // LOGIN
 router.post('/login', authController.login);
 
+// Refresh Token 
+router.post('/refresh-token', authController.refreshToken);
+
 module.exports = router;

@@ -16,7 +16,7 @@ const fetchWithToken = async (url, options = {}) => {
     });
   
     if (res.status === 401 && refreshToken) {
-      const refreshRes = await fetch(process.env.REACT_APP_SERVER_URL + "/api/refresh-token", {
+      const refreshRes = await fetch("localhost:5000/api/auth/refresh-token", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
