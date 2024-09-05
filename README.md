@@ -65,6 +65,7 @@ Shirley Book Store is a comprehensive application for managing books, blogs, and
            - "@testing-library/react": "^13.4.0",
            - "@testing-library/user-event": "^13.5.0",
            - "antd": "^5.20.1",
+           - "jwt-decode": "^4.0.0",
            - "react": "^18.3.1",
            - "react-dom": "^18.3.1",
            - "react-redux": "^9.1.2",
