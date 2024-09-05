@@ -11,17 +11,6 @@ import ProductFilter from "../../components/product/ProductFilter";
 import { Link } from "react-router-dom";
 import { getAllProducts } from "../../services/product-service";
 
-const bookss = [
-  {
-    id: 1,
-    title: "What Is Life?",
-    type: "Type 10",
-    originalPrice: 21.0,
-    salePrice: 19.0,
-    image: "/images/bookCover.webp",
-  },
-];
-
 const BookCard = () => {
 
   const [books, setBooks] = useState([]);

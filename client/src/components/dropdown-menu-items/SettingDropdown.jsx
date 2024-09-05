@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const SettingDropdown = ({ title, items }) => {
-
   const handleLogout = () => {
+    clearLocalStorage();
+    window.location.href = "/account/login"; // Redirect to login page
+  };
+
+  const clearLocalStorage = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("id");
@@ -11,8 +16,27 @@ const SettingDropdown = ({ title, items }) => {
     localStorage.removeItem("lastName");
     localStorage.removeItem("email");
     localStorage.removeItem("role");
-    window.location.href = "/account/login";
   };
+
+  const checkAccess = () => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
+      clearLocalStorage();
+    } else {
+      try {
+        const { exp } = jwtDecode(accessToken);
+        if (Date.now() >= exp * 1000) {
+          clearLocalStorage();
+        }
+      } catch (error) {
+        clearLocalStorage();
+      }
+    }
+  };
+
+  useEffect(() => {
+    checkAccess();
+  }, []);
 
   return (
     <div className="w-[320px] bg-white">
@@ -37,17 +61,14 @@ const SettingDropdown = ({ title, items }) => {
           <ul className="flex flex-col gap-4 py-5">
             {localStorage.getItem("accessToken") ? (
               <>
-                <Link
-                  to="#"
-                  className="cursor-hover hover:text-[#62ab00]"
-                >
+                <Link to="#" className="cursor-hover hover:text-[#62ab00]">
                   <li className="text-base">Profile</li>
                 </Link>
                 <li
                   className="cursor-pointer hover:text-[#62ab00]"
                   onClick={handleLogout}
                 >
-                  <li className="text-base">Logout</li>
+                  Logout
                 </li>
               </>
             ) : (

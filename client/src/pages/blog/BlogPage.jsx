@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col, Pagination } from "antd";
+import { Row, Col } from "antd";
 import BlogFilter from "../../components/blog/BlogFilter";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
