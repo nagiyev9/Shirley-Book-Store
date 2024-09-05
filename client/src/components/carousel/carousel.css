@@ -1,0 +1,28 @@
+.ant-carousel .slick-slide {
+  transition: all 0.5s ease;
+}
+
+.ant-carousel .slick-dots li.slick-active button {
+  background-color: white;
+}
+
+.ant-carousel .slick-prev,
+.ant-carousel .slick-next {
+  color: white;
+}
+
+.carousel-item {
+  background-color: #19222d;
+  opacity: 0.9;
+  height: 500px;
+}
+
+.contentStyle {
+  height: 500px;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

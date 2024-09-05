@@ -1,0 +1,9 @@
+@media (max-width: 1215px) {
+    .buttons {
+        gap: 20px;
+        overflow-x: auto; 
+        padding: 20px 12px;
+        white-space: nowrap; 
+        flex-wrap: nowrap; 
+    }
+}

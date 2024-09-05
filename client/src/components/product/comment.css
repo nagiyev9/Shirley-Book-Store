@@ -1,0 +1,8 @@
+.comment-item .delete-icon {
+  opacity: 0; 
+  transition: opacity 0.2s ease-in-out; 
+}
+
+.comment-item:hover .delete-icon {
+  opacity: 1; 
+}

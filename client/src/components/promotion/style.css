@@ -1,0 +1,19 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-family: 'Arial', sans-serif;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+}
+
+@media (max-width: 1486px) {
+    .serisbook {
+        width: 250px;
+    }
+}

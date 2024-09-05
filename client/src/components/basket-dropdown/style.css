@@ -1,0 +1,28 @@
+.basket-dropdown-overlay {
+  position: absolute;
+  top: 71px;
+  right: 0;
+  width: 320px;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  opacity: 0;
+}
+
+.basket-dropdown-overlay.open {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+@media (max-width: 1000px) {
+  .basket-dropdown-overlay {
+    position: absolute;
+    top: 100px;
+    right: 10%;
+    width: 320px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+    opacity: 0;
+  }
+}

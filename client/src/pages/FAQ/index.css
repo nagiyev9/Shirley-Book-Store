@@ -1,0 +1,12 @@
+.breadcrumb {
+  color: #888;
+}
+
+.faq-content h1 {
+  margin-bottom: 1rem;
+}
+
+.faq-items .ant-collapse-header {
+  font-weight: 500;
+  font-size: 1rem;
+}

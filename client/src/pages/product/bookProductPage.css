@@ -1,0 +1,15 @@
+.container {
+  max-width: 1200px;
+}
+
+.ant-tabs-nav .ant-tabs-tab {
+  font-weight: bold;
+}
+
+.ant-tabs-nav .ant-tabs-tab-active {
+  color: #52c41a !important;
+}
+
+.ant-tabs-ink-bar {
+  background-color: #52c41a !important; 
+}

@@ -1,0 +1,31 @@
+.footer-container {
+  font-family: "Arial", sans-serif;
+}
+
+.newsletter-input input {
+  border-radius: 0;
+}
+
+.send-button {
+  background-color: black;
+  border: none; 
+  color: white; 
+}
+
+.send-button:hover,
+.send-button:focus {
+  background-color: #62ab00 !important; 
+  border: none; 
+}
+
+
+@media (max-width: 768px) {
+    .footer-newsletter {
+        padding: 0 30px;
+    }
+
+  .last-footer {
+    flex-direction: column;
+    gap: 15px;
+  }
+}

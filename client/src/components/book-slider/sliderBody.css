@@ -1,0 +1,133 @@
+.slider-container {
+  width: 100%;
+  max-width: max-content;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slider-item {
+  flex: 0 0 25%;
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.sale-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: red;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.icon-overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  margin-left: 24px;
+  gap: 20px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: black;
+  z-index: 2;
+}
+
+.slider-item:hover .icon-overlay {
+  opacity: 1;
+}
+
+.slider-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.arrow-button {
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 36px;
+  transition: background-color 0.3s ease;
+  z-index: 10;
+}
+
+.arrow-button:first-of-type {
+  left: 10px;
+}
+
+.arrow-button:last-of-type {
+  right: 10px;
+}
+
+.arrow-button:hover {
+  background-color: #d3d3d3;
+}
+
+@media (max-width: 1000px) {
+  .icon-overlay {
+    top: 30%;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 920px) {
+  .slider-item {
+    flex: 0 0 33%;
+  }
+}
+
+@media (max-width: 768px) {
+  .slider-item {
+    flex: 0 0 50%;
+  }
+
+  .icon-overlay {
+    top: 40%;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 595px) {
+  .icon-overlay {
+    top: 35%;
+    font-size: xx-small;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 525px) {
+  .icon-overlay {
+    top: 30%;
+    font-size: 8px;
+    gap: 7px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slider-item {
+    flex: 0 0 100%;
+  }
+
+  .icon-overlay {
+    top: 40%;
+    gap: 20px;
+  }
+}
