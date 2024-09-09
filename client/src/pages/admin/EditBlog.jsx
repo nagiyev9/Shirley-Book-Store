@@ -15,7 +15,7 @@ const EditBlog = () => {
     title: "",
     desc: "",
     publisherName: "",
-    tags: [], // Assuming this is an array of objects
+    tags: [], 
     image: "",
   });
   const [selectedImage, setSelectedImage] = useState(null);
@@ -59,7 +59,7 @@ const EditBlog = () => {
     formData.append("title", data.title);
     formData.append("desc", data.desc);
     formData.append("publisherName", data.publisherName);
-    formData.append("tags", JSON.stringify(data.tags.map((tag) => tag._id))); // Send only tag IDs
+    formData.append("tags", JSON.stringify(data.tags.map((tag) => tag._id))); 
     if (selectedImage) {
       formData.append("image", selectedImage);
     }

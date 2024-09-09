@@ -61,10 +61,12 @@ const EditProduct = () => {
 
   const handleTagsChange = (e) => {
     const { value, checked } = e.target;
+    console.log(value, checked);
     setData((prevState) => {
       const newTags = checked
         ? [...prevState.tag, value]
         : prevState.tag.filter((t) => t !== value);
+        console.log(newTags);
       return { ...prevState, tag: newTags };
     });
   };
@@ -111,8 +113,9 @@ const EditProduct = () => {
     formData.append("size", data.size);
     formData.append("desc", data.desc);
     formData.append("type", data.type._id);
-    formData.append("category", data.category);
+    formData.append("category", data.category._id);
     formData.append("tag", JSON.stringify(data.tag));
+    console.log(data.category);
     if (selectedImage) {
       formData.append("image", selectedImage);
     }
@@ -303,6 +306,7 @@ const EditProduct = () => {
             <option value="">Select Category</option>
             {categories.map((category) => (
               <option key={category._id} value={category._id}>
+                {console.log(category._id)}
                 {category.title}
               </option>
             ))}
