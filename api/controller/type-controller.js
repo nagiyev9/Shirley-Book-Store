@@ -29,9 +29,13 @@ exports.addNewType = async (req, res) => {
     type.slug = slugField(type.title);
     try {
         const newType = await typeService.addNewType(type);
-        res.status(200).json(newType);
+        res.status(200).json({
+            status: 200,
+            message: "Type added successfully",
+            data: newType
+        });
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({ message: error.message });
     };
 };
 
@@ -42,9 +46,14 @@ exports.editType = async (req, res) => {
     type.slug = slugField(type.title);
     try {
         const editType = await typeService.editType(slug, type);
-        res.status(200).json(editType);
+        res.status(200).json({
+            status: 200,
+            message: "Type edited successfully",
+            data: editType
+        });
     } catch (error) {
-        res.status(500).json(error);
+        console.log(error);
+        res.status(500).json({ message: error.message });
     };
 };
 
@@ -53,8 +62,12 @@ exports.deleteType = async (req, res) => {
     const slug = req.params.slug;
     try {
         const type = await typeService.deleteType(slug);
-        res.status(200).json(type);
+        res.status(200).json({
+            status: 200,
+            message: "Type deleted successfully",
+            data: type
+        });
     } catch (error) {
-        res.status(500).json(error);
-    }
+        res.status(500).json({ message: error.message });
+    };
 };

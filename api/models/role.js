@@ -10,6 +10,7 @@ const RoleSchema = mongoose.Schema(
         },
         slug: {
             type: String,
+            require: true,
             unique: true
         }
     }

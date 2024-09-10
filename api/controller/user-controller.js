@@ -29,8 +29,12 @@ exports.editUser = async (req, res) => {
     const user = req.body;
     try {
         const editUser = await userService.editUser(slug, user);
-        res.status(200).json(editUser);
+        res.status(200).json({
+            status: 200,
+            message: "User edited successfully",
+            data: editUser
+        });
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({ message: error.message });
     };
 };

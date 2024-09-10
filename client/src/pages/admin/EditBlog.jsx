@@ -15,7 +15,7 @@ const EditBlog = () => {
     title: "",
     desc: "",
     publisherName: "",
-    tags: [], 
+    tags: [],
     image: "",
   });
   const [selectedImage, setSelectedImage] = useState(null);
@@ -23,6 +23,7 @@ const EditBlog = () => {
   useEffect(() => {
     getAllBlogTags().then((data) => {
       setTagsList(data);
+      console.log(data);
     });
   }, []);
 
@@ -59,15 +60,17 @@ const EditBlog = () => {
     formData.append("title", data.title);
     formData.append("desc", data.desc);
     formData.append("publisherName", data.publisherName);
-    formData.append("tags", JSON.stringify(data.tags.map((tag) => tag._id))); 
+    formData.append("tags", JSON.stringify(data.tags.map((tag) => tag._id)));
     if (selectedImage) {
       formData.append("image", selectedImage);
     }
 
     try {
-      await editBlog(slug, formData);
+      const response = await editBlog(slug, formData);
+      if (response.status === 200) {
+        message.success(response.message);
+      }
       navigate("/pages/admin");
-      message.success("Blog updated successfully");
     } catch (error) {
       message.error("Failed to update blog");
       console.error("Error updating blog:", error);
@@ -173,7 +176,7 @@ const EditBlog = () => {
               Tags:
             </label>
             <div className="flex flex-wrap gap-2 mb-4">
-              {tagsList.map((tag) => (
+              {tagsList?.map((tag) => (
                 <label key={tag._id} className="inline-flex items-center">
                   <input
                     type="checkbox"

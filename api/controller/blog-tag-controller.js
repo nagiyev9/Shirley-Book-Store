@@ -29,9 +29,13 @@ exports.addNewTag = async (req, res) => {
     tag.slug = slugField(tag.title);
     try {
         const newTag = await tagService.addNewTag(tag);
-        res.status(200).json(newTag);
+        res.status(200).json({
+            status: 200,
+            message: "Tag added successfully",
+            data: newTag
+        });
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({ message: error.message });
     };
 };
 
@@ -42,10 +46,14 @@ exports.editTag = async (req, res) => {
     tag.slug = slugField(tag.title);
     try {
         const editTag = await tagService.editTag(slug, tag);
-        res.status(200).json(editTag);
+        res.status(200).json({
+            status: 200,
+            message: "Tag edited successfully",
+            data: editTag
+        });
     } catch (error) {
         console.log(error);
-        res.status(500).json(error);
+        res.status(500).json({ message: error.message });
     };
 };
 
@@ -54,9 +62,13 @@ exports.deleteTag = async (req, res) => {
     const slug = req.params.slug;
     try {
         const tag = await tagService.deleteTag(slug);
-        res.status(200).json(tag);
+        res.status(200).json({
+            status: 200,
+            message: "Tag deleted successfully",
+            data: tag
+        });
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({ message: error.message });
         console.log(error);
     }
 };

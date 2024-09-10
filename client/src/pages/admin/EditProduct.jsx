@@ -66,7 +66,7 @@ const EditProduct = () => {
       const newTags = checked
         ? [...prevState.tag, value]
         : prevState.tag.filter((t) => t !== value);
-        console.log(newTags);
+      console.log(newTags);
       return { ...prevState, tag: newTags };
     });
   };
@@ -122,8 +122,9 @@ const EditProduct = () => {
 
     try {
       const response = await editProduct(slug, formData);
-      console.log(response);
-      message.success("Product edited successfully");
+      if (response.status === 200) {
+        message.success(response.message);
+      }
       navigate("/pages/admin");
     } catch (error) {
       message.error("Failed to edit product");

@@ -23,7 +23,8 @@ const UserSchema = mongoose.Schema(
         },
         slug: {
             type: String,
-            require: true
+            require: true,
+            unique: true
         },
         role: {
             type: mongoose.Schema.Types.ObjectId,

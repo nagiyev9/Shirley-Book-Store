@@ -64,15 +64,17 @@ const AddBlog = () => {
     formData.tags.forEach((tag) => formDataToSend.append("tags", tag));
 
     try {
-      await addNewBlog(formDataToSend); 
-      message.success("Added new blog successfully!");
-      setFormData({
-        title: "",
-        desc: "",
-        publisherName: "",
-        image: null,
-        tags: [],
-      });
+      const response = await addNewBlog(formDataToSend); 
+      if (response.status === 200) {
+        message.success(response.message);
+        setFormData({
+          title: "",
+          desc: "",
+          publisherName: "",
+          image: null,
+          tags: [],
+        });
+      }
       navigate("/pages/admin");
     } catch (error) {
       message.error("Failed to add blog. Please try again.");
@@ -107,6 +109,7 @@ const AddBlog = () => {
               onChange={handleChange}
               className="w-full px-4 py-2 mb-4 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter Blog Title"
+              required
             />
 
             <label
@@ -138,6 +141,7 @@ const AddBlog = () => {
               onChange={handleChange}
               className="w-full px-4 py-2 mb-4 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter Publisher Name"
+              required
             />
 
             <label
@@ -152,6 +156,7 @@ const AddBlog = () => {
               id="image"
               onChange={handleChange}
               className="w-full px-4 py-2 mb-4 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
             />
 
             <label

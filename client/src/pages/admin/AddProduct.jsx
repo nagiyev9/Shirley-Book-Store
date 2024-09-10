@@ -59,20 +59,22 @@ const AddProduct = () => {
 
     try {
       const response = await addNewProduct(productData);
-      message.success("Product added successfully");
-      console.log("Product added successfully:", response);
-      setFormData({
-        name: "",
-        price: "",
-        authorName: "",
-        color: "",
-        size: "",
-        desc: "",
-        type: "",
-        category: "",
-        tag: [],
-        image: null,
-      });
+      if (response.status === 200) {
+        message.success(response.message);
+        console.log("Product added successfully:", response);
+        setFormData({
+          name: "",
+          price: "",
+          authorName: "",
+          color: "",
+          size: "",
+          desc: "",
+          type: "",
+          category: "",
+          tag: [],
+          image: null,
+        });
+      }
       navigate("/pages/admin");
     } catch (error) {
       message.error("Error adding product");
@@ -108,6 +110,7 @@ const AddProduct = () => {
               onChange={handleChange}
               className="w-full px-4 py-2 mb-4 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter Product Name"
+              required
             />
 
             <label
@@ -124,6 +127,7 @@ const AddProduct = () => {
               onChange={handleChange}
               className="w-full px-4 py-2 mb-4 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter Price"
+              required
             />
 
             <label
@@ -138,6 +142,7 @@ const AddProduct = () => {
               id="image"
               onChange={handleChange}
               className="w-full px-4 py-2 mb-4 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
             />
 
             <label
@@ -154,6 +159,7 @@ const AddProduct = () => {
               onChange={handleChange}
               className="w-full px-4 py-2 mb-4 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter Author Name"
+              required
             />
 
             <label
@@ -170,6 +176,7 @@ const AddProduct = () => {
               onChange={handleChange}
               className="w-full px-4 py-2 mb-4 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter Color"
+              required
             />
 
             <label

@@ -35,9 +35,13 @@ exports.addNewBlog = async (req, res) => {
     blog.slug = slugField(blog.title);
     try {
         const newBlog = await blogService.addNewBlog(blog);
-        res.status(200).json(newBlog);
+        res.status(200).json({
+            status: 200,
+            message: "Blog added successfully",
+            data: newBlog
+        });
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({ message: error.message });
         console.log(error);
     };
 };  
@@ -71,10 +75,14 @@ exports.editBlog = async (req, res) => {
 
     try {   
         const editBlog = await blogService.editBlog(slug, blog);
-        res.status(200).json(editBlog);
+        res.status(200).json({
+            status: 200,
+            message: "Blog edited successfully",
+            data: editBlog
+        });
     } catch (error) {
         console.log(error);
-        res.status(500).json(error);  
+        res.status(500).json({ message: error.message });  
     };
 };
 
@@ -83,8 +91,12 @@ exports.deleteBlog = async (req, res) => {
     const slug = req.params.slug;
     try {
       const blog = await blogService.deleteBlog(slug);
-      res.status(200).json(blog);  
+      res.status(200).json({
+        status: 200,
+        message: "Blog deleted successfully",
+        data: blog
+      });  
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({ message: error.message });
     };
 };

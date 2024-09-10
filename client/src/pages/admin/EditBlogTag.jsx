@@ -21,8 +21,10 @@ const EditBlogTag = () => {
 
   const handleEdit = async (updatedData) => {
     try {
-      await editBlogTag(slug, updatedData);
-      message.success("Blog tag updated successfully!");
+      const response = await editBlogTag(slug, updatedData);
+      if (response.status === 200) {
+        message.success(response.message);
+      }
       navigate("/pages/admin");
     } catch (error) {
       message.error("Failed to edit blog tag.");

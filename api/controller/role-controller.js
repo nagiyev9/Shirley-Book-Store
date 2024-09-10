@@ -29,9 +29,13 @@ exports.addNewRole = async (req, res) => {
     role.slug = slugField(role.role);
     try {
         const newRole = await roleService.addNewRole(role);
-        res.status(200).json(newRole);
+        res.status(200).json({
+            status: 200,
+            message: "Role added successfully",
+            data: newRole
+        });
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({ message: error.message });
     };
 };
 
@@ -42,9 +46,13 @@ exports.editRole = async (req, res) => {
     role.slug = slugField(role.role);
     try {
         const editRole = await roleService.editRole(slug, role);
-        res.status(200).json(editRole);
+        res.status(200).json({
+            status: 200,
+            message: "Role edited successfully",
+            data: editRole
+        });
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({ message: error.message });
     };
 };
 
@@ -53,8 +61,12 @@ exports.deleteRole = async (req, res) => {
     const slug = req.params.slug;
     try {
         const role = await roleService.deleteRole(slug);
-        res.status(200).json(role);
+        res.status(200).json({
+            status: 200,
+            message: "Role deleted successfully",
+            data: role
+        });
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({ message: error.message });
     };
 };

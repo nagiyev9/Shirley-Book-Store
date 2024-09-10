@@ -13,9 +13,11 @@ const AddType = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await addNewType({ title: typeName });
-      message.success("Type added successfully!");
-      setTypeName("");
+      const response = await addNewType({ title: typeName });
+      if (response.status === 200) {
+        message.success(response.message);
+        setTypeName("");
+      }
       navigate("/pages/admin");
     } catch (error) {
       message.error("Failed to add Type. Please try again.");

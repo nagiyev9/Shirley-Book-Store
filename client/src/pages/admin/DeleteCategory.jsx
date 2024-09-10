@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import DeleteItem from "../../components/template/DeleteItem";
@@ -13,12 +13,14 @@ const DeleteCategory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        await deleteCategory(slug);
-        message.success("Category deleted successfully!");
-        navigate("/pages/admin");
+      const response = await deleteCategory(slug);
+      if (response.status === 200) {
+        message.success(response.message);
+      }
+      navigate("/pages/admin");
     } catch (error) {
-        message.error("Failed to delete category. Please try again.");
-        console.error("Error deleting tag:", error);
+      message.error("Failed to delete category. Please try again.");
+      console.error("Error deleting tag:", error);
     }
   };
 

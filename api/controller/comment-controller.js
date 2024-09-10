@@ -45,7 +45,7 @@ exports.addNewComment = async (req, res) => {
         });
     } catch (error) {
         console.log(error);
-        res.status(500).json(error);
+        res.status(500).json({ message: error.message });
     };
 };
 
@@ -60,6 +60,6 @@ exports.deleteComment = async (req, res) => {
             data: comment
         });
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({ message: error.message });
     }
 };

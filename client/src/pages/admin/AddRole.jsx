@@ -13,9 +13,11 @@ const AddRole = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await addNewRole({ role: roleName });
-      message.success("Role added successfully!");
-      setRoleName("");
+      const response = await addNewRole({ role: roleName });
+      if (response.status === 200) {
+        message.success(response.message);
+        setRoleName("");
+      }
       navigate("/pages/admin");
     } catch (error) {
       message.error("Failed to add Role. Please try again.");

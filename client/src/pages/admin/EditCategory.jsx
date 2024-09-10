@@ -30,9 +30,11 @@ const EditCategory = () => {
 
   const handleEdit = async (updatedData) => {
     try {
-      await editCategory(slug, updatedData);
+      const response = await editCategory(slug, updatedData);
+      if (response.status === 200) {
+        message.success(response.message);
+      }
       navigate("/pages/admin"); 
-      message.success("Category updated successfully!");
     } catch (error) {
       message.error("Failed to edit category.");
       console.error("Failed to edit category:", error);

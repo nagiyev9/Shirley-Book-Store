@@ -20,8 +20,8 @@ const EditUser = ({ item }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const userData = await getAllUsers(); // Adjust this to get a single user by slug if necessary
-        setData(userData[0]); // Assuming you need the first user; adjust logic as needed
+        const userData = await getAllUsers();
+        setData(userData[0]);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -59,8 +59,10 @@ const EditUser = ({ item }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await updateUser(slug, { ...data, role: data.role._id });
-      message.success("User updated successfully!");
+      const response = await updateUser(slug, { ...data, role: data.role._id });
+      if (response.status === 200) {
+        message.success(response.message);
+      }
       navigate("/pages/admin");
     } catch (error) {
       message.error("Failed to update user.");
@@ -143,7 +145,11 @@ const EditUser = ({ item }) => {
               onChange={handleRoleChange}
             >
               {roles.map((role) => (
-                <option key={role._id} value={role._id} selected={data?.role?.role === role.role}>
+                <option
+                  key={role._id}
+                  value={role._id}
+                  selected={data?.role?.role === role.role}
+                >
                   {role.role}
                 </option>
               ))}

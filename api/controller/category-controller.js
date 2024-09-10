@@ -29,9 +29,13 @@ exports.addNewCategory = async (req, res) => {
         const category = req.body;
         category.slug = slugField(category.title);
         const newCategory = await categoryService.addNewCategory(category);
-        res.status(200).json(newCategory);
+        res.status(200).json({
+            status: 200,
+            message: "Category added successfully",
+            data: newCategory
+        });
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -42,9 +46,13 @@ exports.editCategory = async (req, res) => {
     category.slug = slugField(category.title);
     try {
         const categoryEdit = await categoryService.editCategory(slug, category);
-        res.status(200).json(categoryEdit);
+        res.status(200).json({
+            status: 200,
+            message: "Category edited successfully",
+            data: categoryEdit
+        });
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({ message: error.message });
     };
 };
 
@@ -53,8 +61,12 @@ exports.deleteCategory = async (req, res) => {
     const slug = req.params.slug;
     try {
         const category = await categoryService.deleteCategory(slug);
-        res.status(200).json(category);
+        res.status(200).json({
+            status: 200,
+            message: "Category deleted successfully",
+            data: category
+        });
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({ message: error.message });
     };
 };

@@ -34,9 +34,13 @@ exports.addNewProduct = async (req, res) => {
     product.slug = slugField(product.name);
     try {
         const newProduct = await productService.addNewProduct(product);
-        res.status(200).json(newProduct);
+        res.status(200).json({
+            status: 200,
+            message: "Product added successfully",
+            data: newProduct
+        });
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({ message: error.message });
         console.log(error);
     };
 };
@@ -78,7 +82,11 @@ exports.editProduct = async (req, res) => {
         }
 
         const editedProduct = await productService.editProduct(slug, updatedData);
-        res.status(200).json(editedProduct);
+        res.status(200).json({
+            status: 200,
+            message: "Product edited successfully",
+            data: editedProduct
+        });
     } catch (error) {
         console.error('Error editing product:', error);
         res.status(500).json({ error: "Failed to edit product." });
@@ -90,8 +98,12 @@ exports.deleteProduct = async (req, res) => {
     const slug = req.params.slug;
     try {
         const product = await productService.deleteProduct(slug);
-        res.status(200).json(product);
+        res.status(200).json({
+            status: 200,
+            message: "Product deleted successfully",
+            data: product
+        });
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({ message: error.message });
     };
 };

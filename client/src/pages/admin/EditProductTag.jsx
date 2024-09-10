@@ -7,6 +7,7 @@ import {
   getProductTagBySlug,
   editProductTag,
 } from "../../services/product-tag-service";
+import { message } from "antd";
 
 const EditProductTag = () => {
   const { slug } = useParams();
@@ -28,7 +29,10 @@ const EditProductTag = () => {
   }, [slug]); 
   const handleEdit = async (updatedData) => {
     try {
-      await editProductTag(slug, updatedData);
+      const response = await editProductTag(slug, updatedData);
+      if (response.status === 200) {
+        message.success(response.message);
+      }
       navigate("/pages/admin"); 
     } catch (error) {
       console.error("Failed to edit product tag:", error);

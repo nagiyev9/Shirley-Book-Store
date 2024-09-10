@@ -40,6 +40,7 @@ const EditItem = ({ item, inputName, labelName, data, onEdit, title }) => {
             placeholder={`Enter ${labelName} name`}
             value={inputValue}
             onChange={handleChange}
+            required
           />
         </div>
         <button

@@ -8,14 +8,16 @@ import { message } from "antd";
 
 const AddBlogTag = () => {
   const [tagName, setTagName] = useState("");
-  const navigate= useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const newTag = await addNewBlogTag({ title: tagName });
-      message.success("Added new tag");
-      setTagName("");
+      const response = await addNewBlogTag({ title: tagName });
+      if (response.status === 200) {
+        message.success(response.message);
+        setTagName("");
+      }
       navigate("/pages/admin");
     } catch (error) {
       message.error("Error adding new tag:", error);
@@ -31,7 +33,7 @@ const AddBlogTag = () => {
         labelName={"Tag"}
         value={tagName}
         onChange={(e) => setTagName(e.target.value)}
-        onSubmit={handleSubmit} 
+        onSubmit={handleSubmit}
       />
       <Footer />
     </>

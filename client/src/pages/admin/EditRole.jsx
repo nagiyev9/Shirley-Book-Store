@@ -8,16 +8,16 @@ import { message } from "antd";
 const EditRole = () => {
   const { slug } = useParams();
   const [data, setData] = useState("");
-  const [inputValue, setInputValue] = useState(""); 
+  const [inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getRoleBySlug(slug);
-        const roleName = response[0]?.role; 
+        const roleName = response[0]?.role;
         setData(roleName);
-        setInputValue(roleName); 
+        setInputValue(roleName);
       } catch (error) {
         console.error("Error fetching role:", error);
       }
@@ -33,8 +33,10 @@ const EditRole = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await editRole(slug, { role: inputValue }); 
-      message.success("Role updated successfully!");
+      const response = await editRole(slug, { role: inputValue });
+      if (response.status === 200) {
+        message.success(response.message);
+      }
       navigate("/pages/admin");
     } catch (error) {
       message.error("Failed to edit role.");
